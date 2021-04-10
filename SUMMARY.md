@@ -8,9 +8,7 @@
 
 * [云原生（Cloud Native）的定义](cloud-native/cloud-native-definition.md)
 * [云原生的设计哲学](cloud-native/cloud-native-philosophy.md)
-* [Play with Kubernetes](cloud-native/play-with-kubernetes.md)
-* [快速部署一个云原生本地实验环境](cloud-native/cloud-native-local-quick-start.md)
-* [使用 Rancher 在阿里云上部署 Kubenretes 集群](cloud-native/setup-kubernetes-with-rancher-and-aliyun.md)
+* [Kubernetes 的诞生](cloud-native/kubernetes-history.md)
 * [Kubernetes 与云原生应用概览](cloud-native/kubernetes-and-cloud-native-app-overview.md)
 * [云原生应用之路 —— 从 Kubernetes 到 Cloud Native](cloud-native/from-kubernetes-to-cloud-native.md)
 * [定义云原生应用](cloud-native/define-cloud-native-app.md)
@@ -25,6 +23,13 @@
   * [云原生编程语言 Ballerina](cloud-native/cloud-native-programming-language-ballerina.md)
   * [云原生编程语言 Pulumi](cloud-native/cloud-native-programming-language-pulumi.md)
 * [云原生的未来](cloud-native/the-future-of-cloud-native.md)
+
+## 快速入门
+
+* [云原生新手入门指南](cloud-native/quick-start.md)
+* [Play with Kubernetes](cloud-native/play-with-kubernetes.md)
+* [快速部署一个云原生本地实验环境](cloud-native/cloud-native-local-quick-start.md)
+* [使用 Rancher 在阿里云上部署 Kubenretes 集群](cloud-native/setup-kubernetes-with-rancher-and-aliyun.md)
 
 ## 概念与原理
 
@@ -72,6 +77,8 @@
   * [Service](concepts/service.md)
   * [Ingress](concepts/ingress.md)
     * [Traefik Ingress Controller](concepts/traefik-ingress-controller.md)
+  * [Kubernetes Service API](concepts/kubernetes-service-api.md)
+    * [Service API 简介](concepts/service-api-overview.md)
 * [身份与权限控制](concepts/authentication-and-permission.md)
   * [ServiceAccount](concepts/serviceaccount.md)
   * [RBAC—— 基于角色的访问控制](concepts/rbac.md)
@@ -90,12 +97,13 @@
   * [Aggregated API Server](concepts/aggregated-api-server.md)
   * [APIService](concepts/apiservice.md)
   * [Service Catalog](concepts/service-catalog.md)
+  * [多集群管理](concepts/multicluster.md)
 * [资源调度](concepts/scheduling.md)
   * [QoS（服务质量等级）](concepts/qos.md)
 
 ## 用户指南
 
-* [用户指南](guide/index.md)
+* [用户指南概览](guide/index.md)
 * [资源对象配置](guide/resource-configuration.md)
   * [配置 Pod 的 liveness 和 readiness 探针](guide/configure-liveness-readiness-probes.md)
   * [配置 Pod 的 Service Account](guide/configure-pod-service-account.md)
@@ -163,7 +171,7 @@
   * [集群及应用监控](practice/monitor.md)
   * [数据持久化问题](practice/data-persistence-problem.md)
   * [管理容器的计算资源](practice/manage-compute-resources-container.md)
-  * [集群联邦](practice/federation.md)
+  * [集群联邦（Cluster Federation）](practice/federation.md)
 * [存储管理](practice/storage.md)
   * [GlusterFS](practice/glusterfs.md)
     * [使用 GlusterFS 做持久化存储](practice/using-glusterfs-for-persistent-storage.md)
@@ -186,7 +194,7 @@
     * [使用 Prometheus 监控 kubernetes 集群](practice/using-prometheus-to-monitor-kuberentes-cluster.md)
     * [Prometheus 查询语言 PromQL 使用说明](practice/promql.md)
   * [使用 Vistio 监控 Istio 服务网格中的流量](practice/vistio-visualize-your-istio-mesh.md)
-* [分布式跟踪](practice/distributed-tracing.md)
+* [分布式追踪](practice/distributed-tracing.md)
   * [OpenTracing](practice/opentracing.md)
 * [服务编排管理](practice/services-management-tool.md)
   * [使用 Helm 管理 Kubernetes 应用](practice/helm.md)
@@ -201,6 +209,31 @@
   * [OpenKruise](practice/openkruise.md)
     * [原地升级](practice/in-place-update.md)
 
+## 服务网格
+
+* [服务网格（Service Mesh）](usecases/service-mesh.md)
+* [企业级服务网格架构](usecases/the-enterprise-path-to-service-mesh-architectures.md)
+  * [服务网格基础](usecases/service-mesh-fundamental.md)
+  * [服务网格技术对比](usecases/comparing-service-mesh-technologies.md)
+  * [服务网格对比 API 网关](usecases/service-mesh-vs-api-gateway.md)
+  * [采纳和演进](usecases/service-mesh-adoption-and-evolution.md)
+  * [定制和集成](usecases/service-mesh-customization-and-integration.md)
+  * [总结](usecases/service-mesh-conclusion.md)
+* [Istio](usecases/istio.md)
+    * [使用 Istio 前需要考虑的问题](usecases/before-using-istio.md)
+    * [安装并试用 Istio](usecases/istio-installation.md)
+    * [Istio 中 sidecar 的注入规范及示例](usecases/sidecar-spec-in-istio.md)
+    * [如何参与 Istio 社区及注意事项](usecases/istio-community-tips.md)
+    * [Istio 免费学习资源汇总](usecases/istio-tutorials-collection.md)
+    * [Sidecar 的注入与流量劫持](usecases/understand-sidecar-injection-and-traffic-hijack-in-istio-service-mesh.md)
+    * [Envoy Sidecar 代理的路由转发](usecases/envoy-sidecar-routing-of-istio-service-mesh-deep-dive.md)
+    * [Istio 如何支持虚拟机](usecases/how-to-integrate-istio-with-vm.md)
+    * [Istio 支持虚拟机的历史](usecases/istio-vm-support.md)
+* [Envoy](usecases/envoy.md)
+    * [Envoy 的架构与基本术语](usecases/envoy-terminology.md)
+    * [Envoy 作为前端代理](usecases/envoy-front-proxy.md)
+    * [Envoy mesh 教程](usecases/envoy-mesh-in-kubernetes-tutorial.md)
+
 ## 领域应用
 
 * [领域应用概览](usecases/index.md)
@@ -208,30 +241,7 @@
   * [微服务中的服务发现](usecases/service-discovery-in-microservices.md)
   * [使用 Java 构建微服务并发布到 Kubernetes 平台](usecases/microservices-for-java-developers.md)
     * [Spring Boot 快速开始指南](usecases/spring-boot-quick-start-guide.md)
-* [Service Mesh 服务网格](usecases/service-mesh.md)
-  * [企业级服务网格架构](usecases/the-enterprise-path-to-service-mesh-architectures.md)
-    * [Service Mesh 基础](usecases/service-mesh-fundamental.md)
-    * [Service Mesh 技术对比](usecases/comparing-service-mesh-technologies.md)
-    * [采纳和演进](usecases/service-mesh-adoption-and-evolution.md)
-    * [定制和集成](usecases/service-mesh-customization-and-integration.md)
-    * [总结](usecases/service-mesh-conclusion.md)
-  * [Istio](usecases/istio.md)
-    * [安装并试用 Istio service mesh](usecases/istio-installation.md)
-    * [Istio 中 sidecar 的注入规范及示例](usecases/sidecar-spec-in-istio.md)
-    * [如何参与 Istio 社区及注意事项](usecases/istio-community-tips.md)
-    * [Istio 免费学习资源汇总](usecases/istio-tutorials-collection.md)
-    * [Sidecar 的注入与流量劫持](usecases/understand-sidecar-injection-and-traffic-hijack-in-istio-service-mesh.md)
-    * [Envoy Sidecar 代理的路由转发](usecases/envoy-sidecar-routing-of-istio-service-mesh-deep-dive.md)
-  * [Linkerd](usecases/linkerd.md)
-    * [Linkerd 使用指南](usecases/linkerd-user-guide.md)
-  * [Conduit](usecases/conduit.md)
-    * [Condiut 概览](usecases/conduit-overview.md)
-    * [安装 Conduit](usecases/conduit-installation.md)
-  * [Envoy](usecases/envoy.md)
-    * [Envoy 的架构与基本术语](usecases/envoy-terminology.md)
-    * [Envoy 作为前端代理](usecases/envoy-front-proxy.md)
-    * [Envoy mesh 教程](usecases/envoy-mesh-in-kubernetes-tutorial.md)
-  * [MOSN](usecases/mosn.md)
+
 * [大数据](usecases/big-data.md)
   * [Spark standalone on Kubernetes](usecases/spark-standalone-on-kubernetes.md)
   * [运行支持 Kubernetes 原生调度的 Spark 程序](usecases/running-spark-with-kubernetes-native-scheduler.md)
@@ -242,6 +252,7 @@
   * [Knative](usecases/knative.md)
 * [边缘计算](usecases/edge-computing.md)
 * [人工智能](usecases/ai.md)
+* [可观察性](usecases/observability.md)
 
 ## 开发指南
 
@@ -259,14 +270,18 @@
 * [社区贡献](develop/contribute.md)
 * [Minikube](develop/minikube.md)
 
-## CNCF（云原生计算基金会）
+## 社区及生态
 
-* [CNCF - 云原生计算基金会简介](cloud-native/cncf.md)
-* [CNCF 章程](cloud-native/cncf-charter.md)
-* [CNCF 特别兴趣小组（SIG）说明](cloud-native/cncf-sig.md)
-* [开源项目加入 CNCF Sandbox 的要求](cloud-native/cncf-sandbox-criteria.md)
-* [CNCF 中的项目治理](cloud-native/cncf-project-governing.md)
-* [CNCF Ambassador](cloud-native/cncf-ambassador.md)
+* [云原生计算基金会（CNCF）](cloud-native/cncf.md)
+  * [CNCF 章程](cloud-native/cncf-charter.md)
+  * [CNCF 特别兴趣小组（SIG）说明](cloud-native/cncf-sig.md)
+  * [开源项目加入 CNCF Sandbox 的要求](cloud-native/cncf-sandbox-criteria.md)
+  * [CNCF 中的项目治理](cloud-native/cncf-project-governing.md)
+  * [CNCF Ambassador](cloud-native/cncf-ambassador.md)
+* [云原生社区](cloud-native/cnc.md)
+* [认证及培训](cloud-native/certification.md)
+  * [认证 Kubernetes 服务提供商（KCSP）说明](appendix/about-kcsp.md)
+  * [认证 Kubernetes 管理员（CKA）说明](appendix/about-cka-candidate.md)
 
 ## 附录
 
@@ -277,21 +292,9 @@
 * [使用技巧](appendix/tricks.md)
 * [问题记录](appendix/issues.md)
 * [Kubernetes 版本更新日志](appendix/kubernetes-changelog.md)
-  * [Kubernetes1.7 更新日志](appendix/kubernetes-1.7-changelog.md)
-  * [Kubernetes1.8 更新日志](appendix/kubernetes-1.8-changelog.md)
-  * [Kubernetes1.9 更新日志](appendix/kubernetes-1.9-changelog.md)
-  * [Kubernetes1.10 更新日志](appendix/kubernetes-1.10-changelog.md)
-  * [Kubernetes1.11 更新日志](appendix/kubernetes-1.11-changelog.md)
-  * [Kubernetes1.12 更新日志](appendix/kubernetes-1.12-changelog.md)
-  * [Kubernetes1.13 更新日志](appendix/kubernetes-1.13-changelog.md)
-  * [Kubernetes1.14 更新日志](appendix/kubernetes-1.14-changelog.md)
-  * [Kubernetes1.15 更新日志](appendix/kubernetes-1.15-changelog.md)
-  * [Kubernetes1.16 更新日志](appendix/kubernetes-1.16-changelog.md)
-  * [Kubernetes1.17 更新日志](appendix/kubernetes-1.17-changelog.md)
 * [Kubernetes 及云原生年度总结及展望](appendix/summary-and-outlook.md)
   * [Kubernetes 与云原生 2017 年年终总结及 2018 年展望](appendix/kubernetes-and-cloud-native-summary-in-2017-and-outlook-for-2018.md)
   * [Kubernetes 与云原生 2018 年年终总结及 2019 年展望](appendix/kubernetes-and-cloud-native-summary-in-2018-and-outlook-for-2019.md)
 * [CNCF 年度报告解读](appendix/cncf-annual-report.md)
   * [CNCF 2018 年年度报告解读](appendix/cncf-annual-report-2018.md)
-* [Kubernetes 认证服务提供商（KCSP）说明](appendix/about-kcsp.md)
-* [认证 Kubernetes 管理员（CKA）说明](appendix/about-cka-candidate.md)
+  * [CNCF 2020 年年度报告解读](appendix/cncf-annual-report-2020.md)

@@ -6,10 +6,8 @@
     "links": {
         "sidebar": {
             "回到主页": "https://jimmysong.io",
-            "Awesome Cloud Native": "https://jimmysong.io/awesome-cloud-native",
-            "云原生社区": "https://cloudnative.to",
-            "中国云原生发展白皮书2020": "https://cloudnativeindustryalliance.github.io/whitepaper2020/",
-            "云原生应用白皮书": "https://jimmysong.io/guide-to-cloud-native-app/"
+            "云原生开源项目大全": "https://jimmysong.io/awesome-cloud-native",
+            "云原生社区": "https://cloudnative.to"
         }
     },
     "plugins": [
@@ -52,7 +50,7 @@
             "size": "small"
         },
         "tbfed-pagefooter": {
-            "copyright": "<a href=https://cloudnative.to/contact/>加入云原生社区·共谱云原生新篇章</a></p>Copyright © 2017-2020 | Distributed under <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>CC BY 4.0</a> | <a href=https://jimmysong.io>jimmysong.io</a>",
+            "copyright": "<a href=https://mp.weixin.qq.com/s/vWlSdzz2MNdXRr0sd2-LFg>加入云原生社区</a></p>Copyright © 2017-2021 | Distributed under <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>CC BY 4.0</a> | <a href=https://jimmysong.io>jimmysong.io</a>",
             "modify_label": " Updated at ",
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },

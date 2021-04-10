@@ -1,10 +1,26 @@
 # Istio简介
 
-[Istio](https://istio.io)是由Google、IBM和Lyft开源的微服务管理、保护和监控框架。Istio为希腊语，意思是”起航“。
+[Istio](https://istio.io) 是由 Google、IBM 和 Lyft 开源的微服务管理、保护和监控框架。Istio 为希腊语，意思是”起航“。
 
-**TL;DR** 关于Istio中的各个组件和一些关键信息请参考下面的mindmap。
+关于Istio中的各个组件和一些关键信息请参考下面的mindmap。
 
 ![Istio的mindmap](../images/istio-mindmap.png)
+
+## Istio 名称的来历
+
+stio（ISS-tee-oh）是由 [Tetrate](https://tetrate.io/) 创始人 Varun Talwar 和谷歌首席工程师 Louis Ryan 在 2017 年命名的，当时他们都在谷歌工作。
+
+Istio 在希腊语中是 “sail” 的意思，它（ιστίο）延用了 Kubernetes（在希腊语中是飞行员或舵手的意思）建立的希腊航海主题。Istio 和它的表亲 Istos（ιστός）（意思是桅杆、网）都来自古希腊词根 Istimi（ἵστημι），意思是 “to make stand”。
+
+“为了取名，我们翻阅了三个小时希腊字典”Varun 说，“最终我们两人想到一起去了。帆船的理念不仅在于谁在控制船，而是没有船你哪儿也去不了。“
+
+Varun 回忆说 10 个候选名称最后被缩减到 3 个，但命名 Istio Github 仓库的实际需求要求他们快速做出最终决定。
+
+Istio 的网址是 [istio.io](https://istio.io/)，“io” 的重复是值得商榷。就其本身而言，“io” 有很多[含义](https://en.wikipedia.org/wiki/Io)，包括 ionium（锾元素）的缩写、以古代宙斯的情人命名的木星卫星，以及得名于印度洋的互联网顶级域名。我们也注意到 io 是 Ino（奥德赛中的人名）的另一种拼法，Ino 给了 Odysseus（奥德赛中的人名）一个神奇的面纱，让他在五级海洋风暴中顺利航行。Istio 不正是那件法器吗？
+
+最后说明一下：Istio 并不是首字母缩写，但如果一定要说它代表着什么，也许会是 “I Secure, Then I Observe”（我保护，我观察），或者 "I’m Sexy To Infrastructure Operators."（我对基础设施运营商富有吸引力）。
+
+语言学家 Efthymia Lixourgioti 为 Istio 项目的取名提供了希腊语翻译和词源学的咨询。
 
 ## 简介
 
@@ -50,21 +66,21 @@ Amalgam8是一款基于内容和版本的路由布局，用于集成多语言异
 
 Istio 服务网格从逻辑上分为数据平面和控制平面。
 
-- **数据平面**由一组智能代理（[Envoy](https://www.envoyproxy.io/)）组成，被部署为 sidecar。这些代理通过一个通用的策略和遥测中心（Mixer）传递和控制微服务之间的所有网络通信。
-- **控制平面**管理并配置代理来进行流量路由。此外，控制平面配置 Mixer 来执行策略和收集遥测数据。
+- **数据平面**由一组智能代理（[Envoy](https://www.envoyproxy.io/)）组成，被部署为 sidecar。
+- **控制平面**管理并配置代理来进行流量路由。
 
 下图展示了组成每个平面的不同组件：
 
-![Istio架构图](../images/istio-arch.png)
+![Istio架构图](../images/istio-mesh-arch.png)
 
-Istio架构分为控制平面和数据平面。
+Istio 的架构分为控制平面和数据平面。
 
-- **数据平面**：由一组智能代理（Envoy）作为sidecar部署，协调和控制所有microservices之间的网络通信。
+- **数据平面**：由一组智能代理（Envoy）以 sidecar 模式部署，协调和控制所有服务之间的网络通信。
 - **控制平面**：负责管理和配置代理路由流量，以及在运行时执行的政策。
 
 ### Envoy
 
-Istio使用Envoy代理的扩展版本，该代理是以C++开发的高性能代理，用于调解service mesh中所有服务的所有入站和出站流量。
+Istio 使用 Envoy 代理的扩展版本，该代理是以 C++ 开发的高性能代理，用于调解服务网格中所有服务的所有入站和出站流量。
 
 Envoy 代理被部署为服务的 sidecar，在逻辑上为服务增加了 Envoy 的许多内置特性，例如:
 
@@ -78,13 +94,7 @@ Envoy 代理被部署为服务的 sidecar，在逻辑上为服务增加了 Envoy
 - 故障注入
 - 丰富的指标
 
-Envoy在kubernetes中作为pod的sidecar来部署。 这允许Istio将大量关于流量行为的信号作为属性提取出来，这些属性又可以在Mixer中用于执行策略决策，并发送给监控系统以提供有关整个mesh的行为的信息。 Sidecar代理模型还允许你将Istio功能添加到现有部署中，无需重新构建或重写代码。
-
-### Mixer
-
-Mixer 是一个平台无关的组件。Mixer 在整个服务网格中执行访问控制和策略使用，并从 Envoy 代理和其他服务收集遥测数据。代理提取请求级别属性，并将其发送到 Mixer 进行评估。
-
-Mixer 包括一个灵活的插件模型。该模型使 Istio 能够与各种主机环境和后端基础设施进行交互。因此，Istio 从这些细节中抽象出 Envoy 代理和 Istio 管理的服务。
+Envoy 在 Pod 中以 sidecar 模式部署。 这允许 Istio 将大量关于流量行为的信号作为属性提取出来，并发送给监控系统以提供有关整个服务网格的行为信息。Sidecar 代理模型还允许你将 Istio 功能添加到现有部署中，无需重新构建或重写代码。
 
 ### Pilot
 
@@ -104,3 +114,4 @@ Galley 是 Istio 的配置验证、提取、处理和分发组件。它负责将
 
 - [Istio：一个用于微服务间通信的服务网格开源项目](https://www.infoq.cn/article/2017/05/istio)
 - [Istio 是什么？](https://istio.io/docs/concepts/what-is-istio/)
+- [Istio Handbook —— Istio 服务网格进阶实战](https://www.servicemesher.com/istio-handbook)
